@@ -6,8 +6,22 @@ node {
             checkout scm
       }
 
+      stages {
+          stage ('Initialize') {
+            steps {
+              sh '''
+                echo "PATH = ${PATH}"
+                echo "M2_HOME = ${M2_HOME}"
+                echo "JAVA_HOME = ${JAVA_HOME}"
+              '''
+            }
+          }
+
+
       stage('Build Project') {
             // build project via maven
+            sh 'java -version'
+            sh 'mvn --version'
             sh "'${mvnHome}/bin/mvn' clean install"
       }
 
