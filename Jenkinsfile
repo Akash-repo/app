@@ -1,9 +1,16 @@
 node {
       def app
+      def mvnHome = tool 'maven-3.8.6'
       stage('Clone repository') {
 
             checkout scm
       }
+
+      stage('Build Project') {
+            // build project via maven
+            sh "'${mvnHome}/bin/mvn' clean install"
+      }
+
       stage('Build image') {
 
             app = docker.build("simplilearn/test")
