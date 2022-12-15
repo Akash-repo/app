@@ -6,8 +6,7 @@ node {
             checkout scm
       }
 
-      stages {
-          stage ('Initialize') {
+      stage ('Initialize') {
             steps {
               sh '''
                 echo "PATH = ${PATH}"
@@ -15,8 +14,7 @@ node {
                 echo "JAVA_HOME = ${JAVA_HOME}"
               '''
             }
-          }
-
+      }
 
       stage('Build Project') {
             // build project via maven
